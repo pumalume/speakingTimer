@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    tools:context="com.ingilizceevi.studentactivities0104.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/main_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/topViewForNames"
+            android:name="com.ingilizceevi.studentactivities0104.datacontroller.DisplayListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:tag="names"
+            tools:layout="@layout/fragment_display_list" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/bottomViewForChapter"
+            android:name="com.ingilizceevi.studentactivities0104.datacontroller.DisplayListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:tag="chapter"
+            tools:layout="@layout/fragment_display_list" />
+
+        <LinearLayout
+
+            android:paddingTop="40dp"
+            android:id = "@+id/activity_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+<!--            <FrameLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="4">-->
+<!--                <Button-->
+<!--                    android:id="@+id/picButton"-->
+<!--                    android:gravity="center"-->
+<!--                    app:backgroundTint="@color/white"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="Pictures"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    app:strokeWidth="3dp"/>-->
+<!--            </FrameLayout>-->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4">
+                <Button
+                    android:id="@+id/vocabButton"
+                    android:layout_gravity="center"
+                    app:backgroundTint="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Vocabulary"
+                    android:textColor="@color/black"
+                    app:strokeWidth="3dp"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

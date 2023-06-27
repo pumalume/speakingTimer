@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    android:background="@drawable/eh_background"
+    tools:context="com.ingilizceevi.studentactivities0104.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/main_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+
+
+</LinearLayout>
+
+
+
+        <LinearLayout
+
+            android:paddingTop="40dp"
+            android:id = "@+id/activity_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/picButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Pictures"
+                    android:textColor="@color/black"
+                    app:strokeColor="@color/EHBorderYellow"
+                    app:strokeWidth="2dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/vocabButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Vocabulary"
+                    android:textColor="@color/black"
+                    app:strokeColor="@color/EHBorderYellow"
+                    app:strokeWidth="2dp"/>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

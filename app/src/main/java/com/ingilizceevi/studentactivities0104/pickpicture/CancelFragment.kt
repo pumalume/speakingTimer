@@ -1,0 +1,35 @@
+package com.ingilizceevi.studentactivities0104.pickpicture
+
+
+import android.os.Bundle
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import com.ingilizceevi.studentactivities0104.pickpicture.LaneViewModel
+import com.ingilizceevi.vocabularycards0104.R
+
+class CancelFragment : DialogFragment() {
+    private val gameBrain: LaneViewModel by activityViewModels()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        val main = inflater.inflate(R.layout.fragment_cancel, container, false)
+        val noButton : Button = main.findViewById(R.id.noCancel)
+        val yesButton : Button = main.findViewById(R.id.yesCancel)
+        yesButton.setOnClickListener {
+            dismiss()
+            gameBrain.cancelGameLiveData.value = true
+        }
+        noButton.setOnClickListener{dismiss()}
+        return main
+    }
+
+
+}
