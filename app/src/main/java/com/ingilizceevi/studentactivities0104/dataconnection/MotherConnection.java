@@ -25,7 +25,7 @@ public class MotherConnection extends AsyncTask<String, String, List<StudentInfo
     String database = "EnglishHouse";
     String ipaddress = "192.168.1.4";
     String selectNameQuery =
-            "SELECT StudentID,FirstName,LastName FROM dbo.Students ORDER BY FirstName;";
+            "SELECT StudentID,FirstName,LastName FROM dbo.Temp ORDER BY FirstName;";
 
     public MotherConnection(gameModel gb) {
         this.gameBrain = gb;

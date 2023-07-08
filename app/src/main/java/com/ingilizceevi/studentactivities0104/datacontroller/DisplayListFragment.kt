@@ -19,12 +19,6 @@ import com.ingilizceevi.vocabularycards0104.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DisplayListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DisplayListFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
