@@ -15,17 +15,17 @@
 
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/topViewForNames"
-            android:name="com.ingilizceevi.studentactivities0104.datacontroller.DisplayListFragment"
+            android:id="@+id/boxForNameFragment"
             android:layout_width="match_parent"
+            android:name="com.ingilizceevi.studentactivities0104.datacontroller.ElementPanel"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:tag="names"
             tools:layout="@layout/fragment_display_list" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/bottomViewForChapter"
-            android:name="com.ingilizceevi.studentactivities0104.datacontroller.DisplayListFragment"
+            android:id="@+id/boxForChapterFragment"
+            android:name="com.ingilizceevi.studentactivities0104.datacontroller.ElementPanel"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -62,14 +62,14 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4">
+                android:layout_weight="6">
                 <Button
                     android:id="@+id/vocabButton"
                     android:layout_gravity="center"
                     app:backgroundTint="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Vocabulary"
+                    android:text="Press \nTo Start"
                     android:textColor="@color/black"
                     app:strokeWidth="3dp"/>
             </FrameLayout>

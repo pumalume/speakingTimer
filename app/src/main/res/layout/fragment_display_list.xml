@@ -31,8 +31,6 @@
                 android:layout_margin="20dp"
                 android:padding="10dp"
                 android:orientation="vertical">
-
-
             </LinearLayout>
         </ScrollView>
     </FrameLayout>

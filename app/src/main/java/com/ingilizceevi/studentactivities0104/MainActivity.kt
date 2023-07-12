@@ -3,7 +3,7 @@ package com.ingilizceevi.studentactivities0104
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ingilizceevi.studentactivities0104.datacontroller.DataController
+import com.ingilizceevi.studentactivities0104.datacontroller.PanelController
 import com.ingilizceevi.vocabularycards0104.R
 
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
           //  if (resultCode == RESULT_OK) {
                 var returnString = data?.getStringExtra("keyName")
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerView2, DataController())
+            .replace(R.id.fragmentContainerView2, PanelController())
             .commit()
             //}
         //}

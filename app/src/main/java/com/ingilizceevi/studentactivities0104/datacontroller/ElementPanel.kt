@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.isNotEmpty
 import androidx.core.view.setMargins
 import androidx.core.view.setPadding
-import androidx.core.view.size
 import androidx.fragment.app.activityViewModels
+import com.ingilizceevi.studentactivities0104.StudentInfo
 import com.ingilizceevi.studentactivities0104.gameModel
 import com.ingilizceevi.vocabularycards0104.R
 
@@ -19,7 +20,7 @@ import com.ingilizceevi.vocabularycards0104.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class DisplayListFragment : Fragment() {
+class ElementPanel : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var main : View
@@ -44,16 +45,15 @@ class DisplayListFragment : Fragment() {
         return main
     }
 
-    override fun onResume() {
-        super.onResume()
-        if(this.tag == "names"){
-            if(gameBrain.studentListIsInitialized)loadNamesIntoView()
+    fun setOnElementClicker(v:View.OnClickListener){
+        val numberOfElements = sizeOfScroll()
+        for(i in 0 until numberOfElements){
+            scroller.getChildAt(i).setOnClickListener(v)
         }
     }
-
-
-    fun viewTagIs(index:Int):Int{
-        return scroller.getChildAt(index).tag.toString().toInt()
+    fun loadOneElement(chosenElement:String, id:String){
+        emptyTheScroll()
+        addStringToView(chosenElement, id)
     }
 
     fun handleOnScrollElement(index:Int):TextView{
@@ -61,15 +61,23 @@ class DisplayListFragment : Fragment() {
         return textview
     }
     fun sizeOfScroll():Int{return scrollSize}
-    fun addListOfStringsToView(list : MutableList<String>){
 
+    fun addListOfStringsToView(list : MutableList<String>){
+        emptyTheScroll()
         val size = list!!.size
         for(i in 0 until size  ){
             addStringToView(list[i], i.toString())
         }
     }
 
-    fun loadNamesIntoView():Boolean{
+    fun chaptersAreLoadedIntoViewFromGameBrain(){
+        emptyTheScroll()
+        val size = gameBrain.myChapterList.size
+        for(i in 0 until size  ){
+            addStringToView(gameBrain.myChapterList[i], i.toString())
+        }
+    }
+    fun namesAreLoadedIntoViewFromGameBrain():Boolean{
         emptyTheScroll()
         val tempList = gameBrain.myStudentList
         for(i in 0 until tempList.size){
@@ -98,13 +106,15 @@ class DisplayListFragment : Fragment() {
     }
 
     fun emptyTheScroll(){
-        scroller.removeAllViews()
+        if(scroller.isNotEmpty()) {
+            scroller.removeAllViews()
+        }
     }
 
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DisplayListFragment().apply {
+            ElementPanel().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

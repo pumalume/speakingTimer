@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.ingilizceevi.studentactivities0104.dataconnection.FatherConnection
-import com.ingilizceevi.studentactivities0104.datacontroller.DataController
+import com.ingilizceevi.studentactivities0104.datacontroller.PanelController
 import com.ingilizceevi.vocabularycards0104.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,7 +30,7 @@ class ActivityController : Fragment() {
     lateinit var main:View
     lateinit var activity_container : FragmentContainerView
     private val gameBrain: gameModel by activityViewModels()
-    var dataController = DataController
+    var panelController = PanelController
     lateinit var dashboard_controller : DashboardController
     lateinit var backDoor : ImageView
 
@@ -49,7 +49,7 @@ class ActivityController : Fragment() {
         main = inflater.inflate(R.layout.fragment_activity_controller, container, false)
         activity_container = main.findViewById(R.id.container_for_activity)
         backDoor = main.findViewById(R.id.door)
-        backDoor.setOnClickListener(backDoorOut_OnClickListener)
+        backDoor.setOnClickListener(backDoorOutOnClickListener)
         observerIsEstablishedQuitActivy()
         observerIsEstablishedStartActivity()
         return main
@@ -57,19 +57,19 @@ class ActivityController : Fragment() {
 
     fun observerIsEstablishedQuitActivy() {
         val quitActivity = Observer<Boolean> {
-            val sInfo = gameBrain.studentInfo
+            val sInfo = gameBrain.chosenStudent
             if(it == true) {
-                val myConnection = FatherConnection(gameBrain.studentInfo)
+                val myConnection = FatherConnection(gameBrain.chosenStudent)
                 myConnection.execute("nameConnection")
             }
 
             //puy thid in drprerate function
 
             childFragmentManager.beginTransaction()
-                .replace(activity_container.id, DataController())
+                .replace(activity_container.id, PanelController())
                 .commit()
             backDoor.visibility = View.VISIBLE
-            backDoor.setOnClickListener(backDoorOut_OnClickListener)
+            backDoor.setOnClickListener(backDoorOutOnClickListener)
             //
         }
         gameBrain.quitSignal.observe(viewLifecycleOwner, quitActivity )
@@ -77,12 +77,9 @@ class ActivityController : Fragment() {
 
     fun observerIsEstablishedStartActivity() {
         val startActivity = Observer<Boolean> {
-            if (it != true) {
-                gameBrain.studentInfo = gameBrain.setDummyStudent("-01")
-            }
-            val id = gameBrain.studentInfo.studentID
-            val name =
-                gameBrain.studentInfo.studentFirstName + " " + gameBrain.studentInfo.studentLastName
+
+            val id = gameBrain.chosenStudent.studentID
+            val name = gameBrain.chosenStudent.studentFirstName
             dashboard_controller = DashboardController.newInstance(name, id)
             childFragmentManager.beginTransaction()
                 .replace(activity_container.id, dashboard_controller, id)
@@ -92,14 +89,14 @@ class ActivityController : Fragment() {
         }
         gameBrain.startSignal.observe(viewLifecycleOwner, startActivity )
     }
-    val backDoorOut_OnClickListener = View.OnClickListener {
+    val backDoorOutOnClickListener = View.OnClickListener {
         requireActivity().finish()
     }
 
     val backDoorIn_OnClickListener = View.OnClickListener {
         //dashboard_controller.myDashboard.
         childFragmentManager.beginTransaction()
-            .replace(activity_container.id, DataController())
+            .replace(activity_container.id, PanelController())
             .commit()
     }
     companion object {

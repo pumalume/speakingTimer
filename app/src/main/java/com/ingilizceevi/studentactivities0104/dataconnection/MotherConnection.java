@@ -40,7 +40,7 @@ public class MotherConnection extends AsyncTask<String, String, List<StudentInfo
 
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            ConnectURL = "jdbc:jtds:sqlserver://192.168.1.67:1434;instanceName=SQL02;databaseName=EnglishHouse;user=pumal;password=Maylee08;";
+            ConnectURL = "jdbc:jtds:sqlserver://192.168.1.75:1434;instanceName=SQL02;databaseName=EnglishHouse;user=pumal;password=Maylee08;";
             //ConnectURL = "jdbc:jtds:sqlserver://" + ipaddress + "/" + database + ";user=" + user + ";password=" + password + ";";
             connection = DriverManager.getConnection(ConnectURL);
             studentList=makeSQLQuery();
@@ -48,6 +48,7 @@ public class MotherConnection extends AsyncTask<String, String, List<StudentInfo
         } catch (Exception e) {
             Log.e("connection error:", e.getMessage());
             myFlag = false;
+            gameBrain.flagIsRaisedForLoadedStudentList(false);
             return null;
         }
         return studentList;
@@ -55,7 +56,7 @@ public class MotherConnection extends AsyncTask<String, String, List<StudentInfo
     @Override
     protected void onPostExecute(List<StudentInfo> listOfStudents) {
         Boolean studentListIsFull = (listOfStudents!=null);
-        if(myFlag)gameBrain.loadMyStudentList(listOfStudents);
+        if(myFlag)gameBrain.studentListIsLoadedFrom(listOfStudents);
         gameBrain.flagIsRaisedForLoadedStudentList(myFlag);
     }
 
@@ -81,8 +82,8 @@ public class MotherConnection extends AsyncTask<String, String, List<StudentInfo
             String lastName = rs.getString("LastName");
             int studentID = rs.getInt("StudentID");
             String s = String.valueOf(studentID);
-            StudentInfo student = new StudentInfo(s);
-            student.setStudentFirstName(firstName);
+            StudentInfo student = new StudentInfo(s, firstName);
+            //student.setStudentFirstName(firstName);
             student.setStudentLastName(lastName);
             studentList.add(student);
         }

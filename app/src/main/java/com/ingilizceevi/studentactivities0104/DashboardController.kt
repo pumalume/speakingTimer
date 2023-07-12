@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
 import com.ingilizceevi.studentactivities0104.dataconnection.FatherConnection
-import com.ingilizceevi.studentactivities0104.pickpicture.LaneViewModel
 import com.ingilizceevi.vocabularycards0104.R
 
 // TODO: Rename parameter arguments, choose names that match
